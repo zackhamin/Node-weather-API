@@ -1,9 +1,21 @@
-<h1>Proper Northern Weather Forecast</h1>
+{{!-- -- <h1>Proper Northern Weather Forecast</h1>
 
 <p className="description">Current Condition - {{describe}}</p>
 
 <p>{{temp}}Degrees</p>
 
-<p className="humidity">Humidity - {{humidity}}</p>
+<p className="humidity">Humidity - {{humidity}}</p> --}}
 
+<ul>
+    {{#each data}}
+     <li>{{@key}} : {{this}}</li>
+     {{/each}}
+</ul>
 
+<form action = "/" method="POST">
+<label for="location">location:</label>
+<input type="text" name="location"><label for="countrycode">Country Code:</label><input type="text" name="countrycode">
+<br>
+<br>
+<input type ="submit" value="send">
+</form>

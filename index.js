@@ -1,11 +1,15 @@
 const hbs = require('express-handlebars');
 const path = require('path');
+const bodyParser = require('body-parser')
 const express = require('express');
 
 const app = express();
 
 const getWeather = require('./lib/getWeather')
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 app.engine('.hbs',hbs({
     defaultLayout:'layout',
@@ -14,12 +18,19 @@ app.engine('.hbs',hbs({
 
 app.set('view engine','.hbs');
 
-app.get('/', async(req,res) => {
-    let data = await getWeather();
+app.get('/', (req,res) => {
+    res.render('index');
+})
+
+app.post('/',async(req,res) =>{
+    let location = req.body.location;
+    let countrycode = req.body.countrycode;
+    console.log(location)
+    let data = await getWeather(location, countrycode);
     let temp = data.main.temp;
     let humidity = data.main.humidity;
     let describe = data.weather[0].description;
-    res.render ('index', {temp,humidity,describe});
+    res.render ('index', {data: {location,temp,humidity,describe}});
 })
 
 
