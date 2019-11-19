@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+    <h1>Five Day Weather Forecast</h1>
+
+    {{#if err}}
+ <h2>{{err}}</h2>
+{{else}}
+    <ul>
+        {{#each list}}
+            <li>{{@key}} : {{this}}</li>
+        {{/each}}
+    </ul>
+{{/if}} 
+<form  method="POST">
+<label for="location">location:</label>
+<input type="text" name="location"><label for="countrycode">Country Code:</label><input type="text" name="countrycode">
+<br>
+<br>
+<input type ="submit" value="send">
+</form>
+
+</html>

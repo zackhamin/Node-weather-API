@@ -6,11 +6,37 @@
 
 <p className="humidity">Humidity - {{humidity}}</p> --}}
 
-<ul>
+{{!-- <ul>
     {{#each data}}
      <li>{{@key}} : {{this}}</li>
      {{/each}}
-</ul>
+</ul> --}}
+
+
+{{#if err}}
+ <h2>{{err}}</h2>
+{{else}}
+    <ul>
+        {{#each data}}
+            <li>{{@key}} : {{this}}</li>
+        {{/each}}
+    </ul>
+{{/if}}
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/fiveday">5 Day Forecast</a></li>
+      <li><a href="/monthly">Monthly</a></li>
+      {{!-- <li><a href="#">Page 3</a></li> --}}
+    </ul>
+  </div>
+</nav>
+
 
 <form action = "/" method="POST">
 <label for="location">location:</label>
